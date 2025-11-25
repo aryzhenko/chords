@@ -1,0 +1,108 @@
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f7f7f7;
+    padding: 20px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 10px;
+    vertical-align: top;
+  }
+
+  th {
+    background-color: #333;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  td {
+    background-color: #fff;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  td:hover {
+    background-color: #f0f8ff;
+    transform: scale(1.05);
+  }
+
+  img {
+    display: block;
+    margin: 8px auto;        /* a little more spacing */
+    max-width: 150px;         /* increase size from 60px */
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+
+  tbody td:nth-child(2n) {
+    background-color: #f9f9f9;
+  }
+
+  .notes-row {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+  .note {
+    position: relative;
+    width: 90px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #f0f0f0;
+    transition: 0.25s;
+    margin: 0 5px;
+    user-select: none;
+  }
+  .note:hover {
+    background: #ffe2b3;
+    transform: scale(1.15);
+  }
+  .note.highlighted {
+    background: #ff9800 !important;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(255, 152, 0, 0.6);
+  }
+  .badge {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: #d00;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #label {
+    font-size: 26px;
+    font-weight: bold;
+    color: #444;
+    margin-top: 20px;
+  }
+  .highlight {
+    background: #ffe2b3 !important;
+  }
+  #minors.note {
+    background: rgb(232, 247, 255);
+  }

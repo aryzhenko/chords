@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Circle of Fifths — Linear Layout with Chord Degrees</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #fafafa;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .row {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .note {
+      position: relative;
+      width: 90px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #f0f0f0;
+      transition: 0.25s;
+      margin: 0 5px;
+      user-select: none;
+    }
+    .note:hover {
+      background: #ffe2b3;
+      transform: scale(1.15);
+    }
+    .badge {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      background: #d00;
+      color: #fff;
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #label {
+      font-size: 26px;
+      font-weight: bold;
+      color: #444;
+      margin-top: 20px;
+    }
+    .highlight {
+      background: #ffe2b3 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="row" id="majors"></div>
+  <div class="row" id="minors"></div>
+  <div id="label">Select a key</div>
+
+  <script>
+    const majors = ["C", "G", "D", "A", "E", "B", "F#", "Db", "Ab", "Eb", "Bb", "F"];
+    const minors = ["Am", "Em", "Bm", "F#m", "C#m", "G#m", "D#m", "Bbm", "Fm", "Cm", "Gm", "Dm"];
+
+    // Chord positions according to music theory for major and minor scales
+    const majorScaleChords = {
+      "C": ["C", "Dm", "Em", "F", "G", "Am", "Bdim"],
+      "G": ["G", "Am", "Bm", "C", "D", "Em", "F#dim"],
+      "D": ["D", "Em", "F#m", "G", "A", "Bm", "C#dim"],
+      "A": ["A", "Bm", "C#m", "D", "E", "F#m", "G#dim"],
+      "E": ["E", "F#m", "G#m", "A", "B", "C#m", "D#dim"],
+      "B": ["B", "C#m", "D#m", "E", "F#", "G#m", "A#dim"],
+      "F#": ["F#", "G#m", "A#m", "B", "C#", "D#m", "E#dim"],
+      "Db": ["Db", "Ebm", "Fm", "Gb", "Ab", "Bbm", "Cdim"],
+      "Ab": ["Ab", "Bbm", "Cm", "Db", "Eb", "Fm", "Gdim"],
+      "Eb": ["Eb", "Fm", "Gm", "Ab", "Bb", "Cm", "Ddim"],
+      "Bb": ["Bb", "Cm", "Dm", "Eb", "F", "Gm", "Adim"],
+      "F": ["F", "Gm", "Am", "Bb", "C", "Dm", "Edim"]
+    };
+
+    const minorScaleChords = {
+      "Am": ["Am", "Bdim", "C", "Dm", "Em", "F", "G"],
+      "Em": ["Em", "F#dim", "G", "Am", "Bm", "C", "D"],
+      "Bm": ["Bm", "C#dim", "D", "Em", "F#m", "G", "A"],
+      "F#m": ["F#m", "G#dim", "A", "Bm", "C#m", "D", "E"],
+      "C#m": ["C#m", "D#dim", "E", "F#m", "G#m", "A", "B"],
+      "G#m": ["G#m", "A#dim", "B", "C#m", "D#m", "E", "F#"],
+      "D#m": ["D#m", "E#dim", "F#", "G#m", "A#m", "B", "C#"],
+      "Bbm": ["Bbm", "Cdim", "Db", "Ebm", "Fm", "Gb", "Ab"],
+      "Fm": ["Fm", "Gdim", "Ab", "Bbm", "Cm", "Db", "Eb"],
+      "Cm": ["Cm", "Ddim", "Eb", "Fm", "Gm", "Ab", "Bb"],
+      "Gm": ["Gm", "Adim", "Bb", "Cm", "Dm", "Eb", "F"],
+      "Dm": ["Dm", "Edim", "F", "Gm", "Am", "Bb", "C"]
+    };
+
+    const majorDegrees = ["I", "II", "III", "IV", "V", "VI", "VII"];
+    const minorDegrees = ["i", "ii", "iii", "iv", "v", "VI", "VII"];
+
+    const majorsRow = document.getElementById("majors");
+    const minorsRow = document.getElementById("minors");
+    const label = document.getElementById("label");
+
+    function clearHighlights() {
+      document.querySelectorAll('.note').forEach(n => n.classList.remove('highlight'));
+      document.querySelectorAll('.badge').forEach(b => b.remove());
+    }
+
+    function highlightKey(root, isMajor) {
+      clearHighlights();
+      const scaleChords = isMajor ? majorScaleChords[root] : minorScaleChords[root];
+      const degrees = isMajor ? majorDegrees : minorDegrees;
+      if (!scaleChords) return;
+      document.querySelectorAll('.note').forEach(note => {
+        const noteText = note.textContent;
+        const idx = scaleChords.indexOf(noteText);
+        if(idx !== -1) {
+          note.classList.add('highlight');
+          const badge = document.createElement('div');
+          badge.className = 'badge';
+          badge.textContent = degrees[idx];
+          note.appendChild(badge);
+        }
+      });
+    }
+
+    majors.forEach(note => {
+      const div = document.createElement("div");
+      div.className = "note";
+      div.textContent = note;
+      div.onclick = () => {
+        label.textContent = `Major key: ${note}`;
+        highlightKey(note, true);
+      };
+      majorsRow.appendChild(div);
+    });
+
+    minors.forEach(note => {
+      const div = document.createElement("div");
+      div.className = "note";
+      div.textContent = note;
+      div.style.background = "#e8f7ff";
+      div.onclick = () => {
+        label.textContent = `Minor key: ${note}`;
+        highlightKey(note, false);
+      };
+      minorsRow.appendChild(div);
+    });
+  </script>
+
+</body>
+</html>

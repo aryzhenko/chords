@@ -1,0 +1,233 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guitar Chords</title>
+  <link href="./css/styles.css" rel="stylesheet">
+</head>
+<body>
+  <div class="circle-container">
+    <div class="notes-row" id="majors">
+      <div class="note" data-chord="C">C</div>
+      <div class="note" data-chord="G">G</div>
+      <div class="note" data-chord="D">D</div>
+      <div class="note" data-chord="A">A</div>
+      <div class="note" data-chord="E">E</div>
+      <div class="note" data-chord="B">B</div>
+      <div class="note" data-chord="F#" data-enh-chord="Gb">F#</div>
+      <div class="note" data-chord="Db" data-enh-chord="C#">Db</div>
+      <div class="note" data-chord="Ab" data-enh-chord="G#">Ab</div>
+      <div class="note" data-chord="Eb" data-enh-chord="D#">Eb</div>
+      <div class="note" data-chord="Bb" data-enh-chord="A#">Bb</div>
+      <div class="note" data-chord="F">F</div>
+    </div>
+    <div class="notes-row" id="minors">
+      <div class="note" data-chord="Am">Am</div>
+      <div class="note" data-chord="Em">Em</div>
+      <div class="note" data-chord="Bm">Bm</div>
+      <div class="note" data-chord="F#m" data-enh-chord="Gbm">F#m</div>
+      <div class="note" data-chord="C#m" data-enh-chord="Dbm">C#m</div>
+      <div class="note" data-chord="G#m" data-enh-chord="Abm">G#m</div>
+      <div class="note" data-chord="D#m" data-enh-chord="Ebm">D#m</div>
+      <div class="note" data-chord="Bbm" data-enh-chord="A#m">Bbm</div>
+      <div class="note" data-chord="Fm">Fm</div>
+      <div class="note" data-chord="Cm">Cm</div>
+      <div class="note" data-chord="Gm">Gm</div>
+      <div class="note" data-chord="Dm">Dm</div>
+    </div>
+  </div>
+  <table id="chords-table">
+    <thead>
+      <tr>
+        <th data-chord="Cm">Cm</th><th data-chord="C">C</th>
+        <th data-chord="C#m">C#m</th><th data-chord="C#">C#</th>
+        <th data-chord="Dm">Dm</th><th data-chord="D">D</th>
+        <th data-chord="D#m">D#m</th><th data-chord="D#">D#</th>
+        <th data-chord="Em">Em</th><th data-chord="E">E</th>
+        <th data-chord="Fm">Fm</th><th data-chord="F">F</th>
+        <th data-chord="F#m">F#m</th><th data-chord="F#">F#</th>
+        <th data-chord="Gm">Gm</th><th data-chord="G">G</th>
+        <th data-chord="G#m">G#m</th><th data-chord="G#">G#</th>
+        <th data-chord="Am">Am</th><th data-chord="A">A</th>
+        <th data-chord="A#m">A#m</th><th data-chord="A#">A#</th>
+        <th data-chord="Bm">Bm</th><th data-chord="B">B</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!-- Function to generate images manually for each note -->
+        <!-- C -->
+        <td data-chord="Cm">
+          <img src="./chords/C/minor_1.jpg">
+          <img src="./chords/C/minor_2.jpg">
+          <img src="./chords/C/minor_3.jpg">
+          <img src="./chords/C/minor_4.jpg">
+        </td>
+        <td data-chord="C">
+          <img src="./chords/C/major_1.jpg">
+          <img src="./chords/C/major_2.jpg">
+          <img src="./chords/C/major_3.jpg">
+          <img src="./chords/C/major_4.jpg">
+        </td>
+
+        <!-- C# -->
+        <td data-chord="C#m">
+          <img src="./chords/Csharp/minor_1.jpg">
+          <img src="./chords/Csharp/minor_2.jpg">
+          <img src="./chords/Csharp/minor_3.jpg">
+          <img src="./chords/Csharp/minor_4.jpg">
+        </td>
+        <td data-chord="C#">
+          <img src="./chords/Csharp/major_1.jpg">
+          <img src="./chords/Csharp/major_2.jpg">
+          <img src="./chords/Csharp/major_3.jpg">
+          <img src="./chords/Csharp/major_4.jpg">
+        </td>
+
+        <!-- D -->
+        <td data-chord="Dm">
+          <img src="./chords/D/minor_1.jpg">
+          <img src="./chords/D/minor_2.jpg">
+          <img src="./chords/D/minor_3.jpg">
+          <img src="./chords/D/minor_4.jpg">
+        </td>
+        <td data-chord="D">
+          <img src="./chords/D/major_1.jpg">
+          <img src="./chords/D/major_2.jpg">
+          <img src="./chords/D/major_3.jpg">
+          <img src="./chords/D/major_4.jpg">
+        </td>
+
+        <!-- D# -->
+        <td data-chord="D#m">
+          <img src="./chords/Dsharp/minor_1.jpg">
+          <img src="./chords/Dsharp/minor_2.jpg">
+          <img src="./chords/Dsharp/minor_3.jpg">
+          <img src="./chords/Dsharp/minor_4.jpg">
+        </td>
+        <td data-chord="D#">
+          <img src="./chords/Dsharp/major_1.jpg">
+          <img src="./chords/Dsharp/major_2.jpg">
+          <img src="./chords/Dsharp/major_3.jpg">
+          <img src="./chords/Dsharp/major_4.jpg">
+        </td>
+
+        <!-- E -->
+        <td data-chord="Em">
+          <img src="./chords/E/minor_1.jpg">
+          <img src="./chords/E/minor_2.jpg">
+          <img src="./chords/E/minor_3.jpg">
+          <img src="./chords/E/minor_4.jpg">
+        </td>
+        <td data-chord="E">
+          <img src="./chords/E/major_1.jpg">
+          <img src="./chords/E/major_2.jpg">
+          <img src="./chords/E/major_3.jpg">
+          <img src="./chords/E/major_4.jpg">
+        </td>
+
+        <!-- F -->
+        <td data-chord="Fm">
+          <img src="./chords/F/minor_1.jpg">
+          <img src="./chords/F/minor_2.jpg">
+          <img src="./chords/F/minor_3.jpg">
+          <img src="./chords/F/minor_4.jpg">
+        </td>
+        <td data-chord="F">
+          <img src="./chords/F/major_1.jpg">
+          <img src="./chords/F/major_2.jpg">
+          <img src="./chords/F/major_3.jpg">
+          <img src="./chords/F/major_4.jpg">
+        </td>
+
+        <!-- F# -->
+        <td data-chord="F#m">
+          <img src="./chords/Fsharp/minor_1.jpg">
+          <img src="./chords/Fsharp/minor_2.jpg">
+          <img src="./chords/Fsharp/minor_3.jpg">
+          <img src="./chords/Fsharp/minor_4.jpg">
+        </td>
+        <td data-chord="F#">
+          <img src="./chords/Fsharp/major_1.jpg">
+          <img src="./chords/Fsharp/major_2.jpg">
+          <img src="./chords/Fsharp/major_3.jpg">
+          <img src="./chords/Fsharp/major_4.jpg">
+        </td>
+
+        <!-- G -->
+        <td data-chord="Gm">
+          <img src="./chords/G/minor_1.jpg">
+          <img src="./chords/G/minor_2.jpg">
+          <img src="./chords/G/minor_3.jpg">
+          <img src="./chords/G/minor_4.jpg">
+        </td>
+        <td data-chord="G">
+          <img src="./chords/G/major_1.jpg">
+          <img src="./chords/G/major_2.jpg">
+          <img src="./chords/G/major_3.jpg">
+          <img src="./chords/G/major_4.jpg">
+        </td>
+
+        <!-- G# -->
+        <td data-chord="G#m">
+          <img src="./chords/Gsharp/minor_1.jpg">
+          <img src="./chords/Gsharp/minor_2.jpg">
+          <img src="./chords/Gsharp/minor_3.jpg">
+          <img src="./chords/Gsharp/minor_4.jpg">
+        </td>
+        <td data-chord="G#">
+          <img src="./chords/Gsharp/major_1.jpg">
+          <img src="./chords/Gsharp/major_2.jpg">
+          <img src="./chords/Gsharp/major_3.jpg">
+          <img src="./chords/Gsharp/major_4.jpg">
+        </td>
+
+        <!-- A -->
+        <td data-chord="Am">
+          <img src="./chords/A/minor_1.jpg">
+          <img src="./chords/A/minor_2.jpg">
+          <img src="./chords/A/minor_3.jpg">
+          <img src="./chords/A/minor_4.jpg">
+        </td>
+        <td data-chord="A">
+          <img src="./chords/A/major_1.jpg">
+          <img src="./chords/A/major_2.jpg">
+          <img src="./chords/A/major_3.jpg">
+          <img src="./chords/A/major_4.jpg">
+        </td>
+
+        <!-- A# -->
+        <td data-chord="A#m">
+          <img src="./chords/Asharp/minor_1.jpg">
+          <img src="./chords/Asharp/minor_2.jpg">
+          <img src="./chords/Asharp/minor_3.jpg">
+          <img src="./chords/Asharp/minor_4.jpg">
+        </td>
+        <td data-chord="A#">
+          <img src="./chords/Asharp/major_1.jpg">
+          <img src="./chords/Asharp/major_2.jpg">
+          <img src="./chords/Asharp/major_3.jpg">
+          <img src="./chords/Asharp/major_4.jpg">
+        </td>
+
+        <!-- B -->
+        <td data-chord="Bm">
+          <img src="./chords/B/minor_1.jpg">
+          <img src="./chords/B/minor_2.jpg">
+          <img src="./chords/B/minor_3.jpg">
+          <img src="./chords/B/minor_4.jpg">
+        </td>
+        <td data-chord="B">
+          <img src="./chords/B/major_1.jpg">
+          <img src="./chords/B/major_2.jpg">
+          <img src="./chords/B/major_3.jpg">
+          <img src="./chords/B/major_4.jpg">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <script src="./js/circle.js"></script>
+</body>
+</html>
