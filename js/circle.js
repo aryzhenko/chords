@@ -38,10 +38,80 @@ const positions = {
 }
 const position_functions = ["tonic", "supertonic", "mediant", "subdominant", "dominant", "submediant", "leading tone"]
 
+function getChordType(chord) {
+    if (chord.endsWith('dim')) {
+        return 'dim';
+    } else if (chord.endsWith('m')) {
+        return 'minor';
+    } else {
+        return 'major';
+    }
+}
+
+function clearChordsTable() {
+    const table = document.getElementById("chords-table");
+    const headerRow = table.querySelector("thead tr");
+    while (headerRow.children.length > 0) {
+        headerRow.removeChild(headerRow.lastChild);
+    }
+    table.querySelectorAll("tbody tr").forEach(row => {
+        while (row.children.length > 0) {
+            row.removeChild(row.lastChild);
+        }
+    });
+}   
+
+function addChordColumn(chord, position, functionName) {
+    const table = document.getElementById("chords-table");
+
+    // 1. Add new <th>
+    const headerRow = table.querySelector("thead tr");
+    const newTh = document.createElement("th");
+    newTh.textContent = chord;
+    headerRow.appendChild(newTh);
+
+    // 2. Add new <td> to each row
+    const rows = table.querySelectorAll("tbody tr");
+
+    rows.forEach((row, index) => {
+        const newTd = document.createElement("td");
+        if (index === 0) {
+            newTd.textContent = position;
+        } else if (index === 1) {
+            newTd.textContent = functionName;
+        } else if (index === 2) {
+            const chordType = getChordType(chord);
+            const noteName = chord.replace('dim', '').replace('m', '');
+            // First row: chord diagrams
+            const img1 = document.createElement("img");
+            img1.src = `./chords/${noteName.replace('#', 'sharp')}/${chordType}_1.jpg`;
+            newTd.appendChild(img1);
+
+            const img2 = document.createElement("img");
+            img2.src = `./chords/${noteName.replace('#', 'sharp')}/${chordType}_2.jpg`;
+            newTd.appendChild(img2);
+
+            const img3 = document.createElement("img");
+            img3.src = `./chords/${noteName.replace('#', 'sharp')}/${chordType}_3.jpg`;
+            newTd.appendChild(img3);
+
+            const img4 = document.createElement("img");
+            img4.src = `./chords/${noteName.replace('#', 'sharp')}/${chordType}_4.jpg`;
+            newTd.appendChild(img4);
+        } else {
+        }
+            // Second row: position text
+        
+        row.appendChild(newTd);
+    });
+}
+
+
 document.querySelectorAll('.circle-container .note').forEach(element => {
     element.addEventListener('click', function () {
         const clickedNote = this.attributes['data-chord']?.value;
         const progression = progressions[clickedNote];
+        const positions_array = getChordType(clickedNote) === 'major' ? positions['major'] : positions['minor'];
 
         if (!progression) return;
 
@@ -50,41 +120,27 @@ document.querySelectorAll('.circle-container .note').forEach(element => {
             note.classList.remove('highlighted');
             note.querySelectorAll('.badge').forEach(badge => badge.remove());
         });
+        clearChordsTable();
 
         const circleContainer = this.closest('.circle-container');
         progression.forEach((chord, index) => {
-            chordType = 'major';
-            if (chord.endsWith('dim')) {
-                chordType = 'dim';
-            } else if (chord.endsWith('m')) {
-                chordType = 'minor';
+            if (getChordType(chord) === 'dim') {
+                chordToAdd = chord.slice(0, -3) + 'm'; // Remove 'dim' for matching
+            } else {
+                chordToAdd = chord;
             }
-            noteItem = circleContainer.querySelector(`.note[data-chord="${chord}"]`)
+            noteItem = circleContainer.querySelector(`.note[data-chord="${chordToAdd}"], .note[data-enh-chord="${chordToAdd}"]`)
             if (!noteItem) return;
 
             noteItem.classList.add('highlighted');
 
-            const positions_array = (chordType == 'major') ? positions['major'] : positions['minor'];
             const badge = document.createElement('span');
             badge.className = 'badge';
             badge.textContent = positions_array[index];
             noteItem.appendChild(badge);
+
+            addChordColumn(chord, positions_array[index], position_functions[index]);
         });
 
-        // Highlight notes in progression
-        // progression.forEach((chord, index) => {
-        //     document.querySelectorAll('.circle-container .note').forEach(note => {
-        //         if (note.attributes['data-chord']?.value === chord || note.attributes['data-enh-chord']?.value === chord) {
-        //             note.classList.add('highlighted');
-        //
-        //             const isMajor = chord[0] === chord[0].toUpperCase() && !chord.includes('m');
-        //             const positions_array = isMajor ? positions['major'] : positions['minor'];
-        //             const badge = document.createElement('span');
-        //             badge.className = 'badge';
-        //             badge.textContent = positions_array[index];
-        //             note.appendChild(badge);
-        //         }
-        //     });
-        // });
     });
 });
